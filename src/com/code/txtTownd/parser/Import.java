@@ -1,9 +1,6 @@
 package com.code.txtTownd.parser;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 
 /**
@@ -12,10 +9,10 @@ import java.io.IOException;
  */
 public class Import {
 	
-		public static void importTXT(){
-			
-			File file = new File("E:\\Aero\\Test.txt");
+		public static String importTXT(File file){			
+
 			BufferedReader reader = null;
+			StringBuilder readerString = new StringBuilder();
 			try{
 				System.out.println("*********读入TXT");
 				reader = new BufferedReader(new FileReader(file));
@@ -23,6 +20,8 @@ public class Import {
 				int line = 1;
 				while ((temp = reader.readLine())!=null){
 					//逐行输出
+					readerString.append(temp);
+					readerString.append(" ");
 					System.out.println("line"+line+":"+temp);
 					line++;
 				}
@@ -30,15 +29,10 @@ public class Import {
 			}catch(IOException e){
 				System.out.println("***********读入错误：");
 				e.printStackTrace();
-			}finally{
-				if(reader != null ){
-					try{
-						reader.close();
-					}catch(IOException e1){
-						e1.printStackTrace();
-					}
-				}
 			}
+
+			 return readerString.toString();
+			 
 		
 	}
 

@@ -2,3 +2,6 @@ bin/
 .settings/
 .classpath
 .project
+.gitignore
+commons-lang3-3.3.2.jar
+commons-lang3-3.3.2-bin.zip

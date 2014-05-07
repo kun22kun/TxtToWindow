@@ -1,5 +1,6 @@
 package com.code.txtTownd.parser;
 
+import java.io.*;
 
 /**
  * @author å¹À¤
@@ -10,7 +11,15 @@ package com.code.txtTownd.parser;
 public class Parser {
 	
 	public static void ReaderIn(){
-		Import.importTXT();
-	}
+		
+		
+		File fileInParser = new File("E:\\Aero\\Test.txt");
+		String readerInParser = Import.importTXT(fileInParser);
+		
+		System.out.println(readerInParser);
+			
+		
+	}	
 
 }
+
