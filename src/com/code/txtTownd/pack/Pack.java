@@ -1,4 +1,4 @@
-package com.code.txtTownd.pack;
+package com.code.txttownd.pack;
 
 public class Pack {
 

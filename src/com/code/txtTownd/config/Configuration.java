@@ -1,9 +1,10 @@
-package com.code.txtTownd.config;
+package com.code.txttownd.config;
 
 /**
+ * @author Âπ¿§
+ * 
  * 	◊÷∂Œ≈‰÷√¿‡
  *
- * @author Âπ¿§
  */
 public class Configuration {
 	

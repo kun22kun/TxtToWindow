@@ -1,11 +1,12 @@
-package com.code.txtTownd.parser;
+package com.code.txttownd.parser;
 
 import java.io.*;
 
 /**
+ * @author 骞坤
+ * 
  * 读入TXT并以String型返回
  *
- * @author 骞坤
  */
 public class Importer {
 	/*

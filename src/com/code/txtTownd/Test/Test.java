@@ -1,27 +1,36 @@
-package com.code.txtTownd.Test;
-import java.util.ArrayList;
-import com.code.txtTownd.config.Configuration;
-import com.code.txtTownd.parser.*;
+package com.code.txttownd.test;
+import java.io.File;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
-public class Test {
+import com.code.txttownd.parser.*;
+
+
+public class Test {	
+	
 	
 	public static void main(String[] args) {
 		
-		Parser.ReaderIn();
 		
-		ArrayList<Configuration> configurations	= Parser.getConfigS();
+		File fileInTest = new File("E:\\Aero\\Test.txt");
+		HashMap<String, Integer[]> configurationsInMap = Parser.ReaderIn(fileInTest);
 		
+
 		
-		
-		for(int i = 0; i < configurations.size();i++){
-			Configuration configTemp1 = (Configuration)configurations.get(i);
-			System.out.print("行值"+configTemp1.getH()+"\t");
-			System.out.print("列值"+configTemp1.getL()+"\t");
-			System.out.print("宽值"+configTemp1.getK()+"\t");
-			System.out.print("高值"+configTemp1.getG()+"\t");
-			System.out.println("Spec段"+configTemp1.getSpec());
-		}
-		System.out.println();
+/*		Iterator iter = configurationsInMap.entrySet().iterator();	//用于测试读入到HashMap中的值是否正确
+		while(iter.hasNext()){
+			Map.Entry entry = (Map.Entry)iter.next();
+			System.out.println("Spec字段为："+entry.getKey());
+			Integer[] intTemp = (Integer[]) entry.getValue();
+			for(int i=0;i<4;i++){
+				System.out.print("第"+i+"个值为："+intTemp[i]+" ");
+			}
+			System.out.println();
+			System.out.println();
+		}*/
 	}
+	
+		
 
 }
