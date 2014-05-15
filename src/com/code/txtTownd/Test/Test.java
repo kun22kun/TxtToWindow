@@ -5,15 +5,24 @@ import java.util.Iterator;
 import java.util.Map;
 
 import com.code.txttownd.parser.*;
-
+/** 
+ * @author 骞坤</br></br>
+ *
+ * 入口类
+ * 
+ */
 
 public class Test {	
 	
 	
 	public static void main(String[] args) {
 		
-		
+		//给定路径下一个配置文件，获取以HashMap<String, Integer[]> 格式的输入信息
 		File fileInTest = new File("E:\\Aero\\Test.txt");
+		
+		// 以HashMap格式如下：
+		//  Key（String类型）为Spec字段
+		//  Value（int[]类型）依次为行列宽高值
 		HashMap<String, Integer[]> configurationsInMap = Parser.ReaderIn(fileInTest);
 		
 

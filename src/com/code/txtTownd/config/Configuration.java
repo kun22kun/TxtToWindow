@@ -1,9 +1,9 @@
 package com.code.txttownd.config;
 
 /**
- * @author 骞坤
+ * @author 骞坤</br></br>
  * 
- * 	字段配置类
+ * 	字段配置类：行值、列值、宽值、高值、Spec值
  *
  */
 public class Configuration {
@@ -29,7 +29,7 @@ public class Configuration {
 	private int G;
 	
 	/**
-	 * 控件ID
+	 * 控件Spec值
 	 */
 	private String spec = null;
 

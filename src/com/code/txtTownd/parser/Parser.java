@@ -8,7 +8,7 @@ import com.code.txttownd.validator.Validator;
 import com.code.txttownd.config.Configuration;
 
 /**
- * @author 骞坤
+ * @author 骞坤</br></br> 
  * 
  * 	解析TXT中的字段值并以HashMap类型返回
  *
@@ -21,17 +21,21 @@ public class Parser {
 	 */
 	private static String readerInParser = null;
 	/**
-	 * 存储Configuration信息列表
+	 * 存储Configuration信息的List</br>&emsp;
+	 *  ArrayList的元素为Configuration对象&emsp;
 	 */
 	private static ArrayList<Configuration> ConfigsList = new ArrayList<>();
-	
+	/**
+	 * 存储Configuration信息的Map</br>&emsp;
+	 *  Key(String)为Spec字段</br>&emsp;
+	 *  Value(int[])依次为行列宽高值&emsp;
+	 */
 	private static HashMap<String, Integer[]>  ConfigsMap = new HashMap<>();
 
 	
 	public static HashMap<String, Integer[]> ReaderIn(File fileInParser){
 		
-		//第一步：读入TXT转化为String型	 
-		
+		//第一步：读入TXT转化为String型		
 		readerInParser = Importer.importTXT(fileInParser);
 //		System.out.println(readerInParser);
 		
@@ -42,7 +46,7 @@ public class Parser {
 		else {
 			System.out.println("************检测结果为：" + isBtwFlds);
 
-			// 第三步：将String分隔为字段构成的数组			 
+			// 第三步：将String分隔为以字段为单位元素的数组			 
 			String[] fieldInParser = Splitter.splitToField(readerInParser);
 			int len = fieldInParser.length;
 
@@ -52,13 +56,14 @@ public class Parser {
 
 			for (int num = 0; num < len; num++) {
 
-				// 冒号分隔成两段并赋值Spec字段给Configuration类
+				// 冒号分隔成两段
+				// 将Spec字段赋值给Configuration类的spec成员变量 和 HashMap中的Key（String类型）
 				Configuration configTemp = new Configuration();
 				fieldSp[num] = Splitter.fieldSplitByColon(fieldInParser[num]);
 				configTemp.setSpec(fieldSp[num][1]);
 				String strInMap = fieldSp[num][1];
 
-				// 取出方位宽高值
+				// 取出行列宽高值
 				String foreField = fieldSp[num][0];
 				String[] valuesOfField = Splitter.fieldValues(foreField);				
 				
@@ -75,29 +80,43 @@ public class Parser {
 					configTemp.setK(Integer.valueOf(valuesOfField[5]));
 					configTemp.setG(Integer.valueOf(valuesOfField[7]));
 					
+					//同时将值赋给HashMap中的Value（int[]类型）
 					Integer[] intInMap = new Integer[4];
 					for(int iInMap=0 ; iInMap < 4; iInMap++){
 						intInMap[iInMap] = Integer.valueOf(valuesOfField[iInMap*2+1]);
 					}					
-
+					//向ArrayList中添加元素
 					ConfigsList.add(configTemp);
 					
-					//赋值给HashMap
+					//向HashMap中添加元素
 					ConfigsMap.put(strInMap, intInMap);
 				}
 			}
 		}
 		return ConfigsMap;		
 	}
-
+	
+	/**
+	 * 以字符串形式获取输入内容
+	 * @return String
+	 */
 	public static String getReaderInParser() {
 		return readerInParser;
 	}
-
+	/**
+	 * 以ArrayList形式获取输入内容</br>&emsp;
+	 *  ArrayList的元素为Configuration对象&emsp;
+	 * @return ArrayList < Configuration >&emsp;
+	 */
 	public static ArrayList<Configuration> getConfigsList() {
 		return ConfigsList;
 	}
-
+	/**
+	 * 以HashMap形式获取输入内容</br>&emsp;
+	 *  Key（String类型）为Spec字段</br>&emsp;
+	 *  Value（int[]类型）依次为行列宽高值&emsp;
+	 * @return HashMap < String, Integer[] >
+	 */
 	public static HashMap<String, Integer[]> getConfigsMap() {
 		return ConfigsMap;
 	}

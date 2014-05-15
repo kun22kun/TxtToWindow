@@ -3,18 +3,19 @@ package com.code.txttownd.parser;
 import java.io.*;
 
 /**
- * @author 骞坤
+ * @author 骞坤</br></br>
  * 
  * 读入TXT并以String型返回
  *
  */
 public class Importer {
-	/*
-	 * 每行添加回车字符串
+	
+	/**
+	 * 以回车分隔的输入字符串
 	 */
 	private static StringBuilder readerStringn = new StringBuilder();
-	/*
-	 * 每行添加空格字符串
+	/**
+	 * 以空格分隔的输入字符串
 	 */
 	private static StringBuilder readerStrings = new StringBuilder();
 
