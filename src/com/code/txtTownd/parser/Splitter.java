@@ -1,10 +1,12 @@
+/*
+ * @author 骞坤<br/>
+ */
 package com.code.txttownd.parser;
 
 import org.apache.commons.lang3.StringUtils;
 
-/** 
- * @author 骞坤<br/>
- * <br/>
+/**
+ * 
  *	1、将返回的String分隔为以控件字段为单位的String数组<br/>
  *	2、将字段以冒号分隔<br/>
  *	3、取出数据值<br/>

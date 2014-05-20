@@ -1,10 +1,11 @@
+/*
+ * @author 骞坤<br/>
+ */
 package com.code.txttownd.validator;
 
 import java.util.regex.*;
 
 /**
- * @author 骞坤<br/>
- * <br/>
  *  
  *	验证TXT输入是否合法，包括以下：<br/>
  *		<li><b>字段内：</b><br/></li>&emsp;

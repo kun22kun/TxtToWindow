@@ -1,7 +1,9 @@
+ /*
+  * @author 骞坤
+  */
 package com.code.txttownd.config;
 
 /**
- * @author 骞坤</br></br>
  * 
  * 	字段配置类：行值、列值、宽值、高值、Spec值
  *
@@ -11,22 +13,22 @@ public class Configuration {
 	/**
 	 * 控件行值
 	 */
-	private int H;
+	private int hang;
 	
 	/**
 	 * 控件列值
 	 */
-	private int L;
+	private int lie;
 	
 	/**
 	 * 控件宽值
 	 */
-	private int K;
+	private int kuan;
 	
 	/**
 	 * 控件高值
 	 */
-	private int G;
+	private int gao;
 	
 	/**
 	 * 控件Spec值
@@ -34,35 +36,35 @@ public class Configuration {
 	private String spec = null;
 
 	public int getH() {
-		return H;
+		return hang;
 	}
 
 	public void setH(int h) {
-		H = h;
+		hang = h;
 	}
 
 	public int getL() {
-		return L;
+		return lie;
 	}
 
 	public void setL(int l) {
-		L = l;
+		lie = l;
 	}
 
 	public int getK() {
-		return K;
+		return kuan;
 	}
 
 	public void setK(int k) {
-		K = k;
+		kuan = k;
 	}
 
 	public int getG() {
-		return G;
+		return gao;
 	}
 
 	public void setG(int g) {
-		G = g;
+		gao = g;
 	}
 
 	public String getSpec() {
@@ -71,9 +73,6 @@ public class Configuration {
 
 	public void setSpec(String spec) {
 		this.spec = spec;
-	}
-	
-	
-	
+	}	
 
 }

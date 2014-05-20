@@ -1,38 +1,40 @@
+/*
+ * @author 骞坤
+ */
 package com.code.txttownd.parser;
 
 import java.io.*;
 
 /**
- * @author 骞坤</br></br>
- * 
+ *  
  * 读入TXT并以String型返回
  *
  */
-public class Importer {
+public class Importer {	
 	
 	/**
-	 * 以回车分隔的输入字符串
+	 * 读入指定路径下配置文件
+	 * @param file
+	 * @return readerStringn.toString()
 	 */
-	private static StringBuilder readerStringn = new StringBuilder();
-	/**
-	 * 以空格分隔的输入字符串
-	 */
-	private static StringBuilder readerStrings = new StringBuilder();
-
 	public static String importTXT(File file) {
 
 		BufferedReader reader = null;
-		
+		StringBuilder readerStrings = new StringBuilder();
+		//以回车分隔的输入字符串
+		StringBuilder readerStringn = new StringBuilder();
 		try {
-
+			
 			reader = new BufferedReader(new FileReader(file));
 			String temp = null;
 
 			// int line = 1;
 			while ((temp = reader.readLine()) != null) {
+				
 				// 逐行读入并添加到readerString后
 				readerStringn.append(temp);
 				readerStringn.append("\n");
+				
 				readerStrings.append(temp);
 				readerStrings.append(" ");
 				// System.out.println("line"+line+":"+temp);
@@ -47,15 +49,5 @@ public class Importer {
 		return readerStringn.toString();
 
 	}
-	
-	public static StringBuilder getReaderStringn() {
-		return readerStringn;
-	}
-
-	public static StringBuilder getReaderStrings() {
-		return readerStrings;
-	}
-
-
 
 }
