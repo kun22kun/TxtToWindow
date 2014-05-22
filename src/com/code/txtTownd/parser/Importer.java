@@ -29,7 +29,7 @@ public class Importer {
 			String temp = null;
 
 			// int line = 1;
-			while ((temp = reader.readLine()) != null) {
+			while ((temp = reader.readLine()) != null) {//while循环最后多加一个回车或空格
 				
 				// 逐行读入并添加到readerString后
 				readerStringn.append(temp);
@@ -40,6 +40,7 @@ public class Importer {
 				// System.out.println("line"+line+":"+temp);
 				// line++;
 			}
+			
 			reader.close();
 		} catch (IOException e) {
 			System.out.println("***********读入错误：");
