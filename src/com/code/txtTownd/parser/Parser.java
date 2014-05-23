@@ -15,7 +15,15 @@ import com.code.txttownd.config.Configuration;
  * 解析TXT中的字段值并以HashMap类型返回
  */
 
-public class Parser {	
+public class Parser {
+	/**
+	 * 值验证画布的行值
+	 */
+	public static final int ROW_IN_CANVAS = 25;
+	/**
+	 * 值验证画布的列值
+	 */
+	public static final int COLUMN_IN_CANVAS = 4;
 	
 	/**
 	 * 读入给定路径下文件，以HashMap<String,String>格式返回所有配置信息
@@ -63,8 +71,9 @@ public class Parser {
 		boolean isBtwFlds = Validator.isBetweenFields(stringInput);
 		
 		ArrayList<Configuration> ConfigsList = new ArrayList<Configuration>();
+		
 		if (!isBtwFlds)
-			System.out.println("输入格式出错，请检查后重新输入！");
+			System.out.println("输入格式出错，请检查后重新输入！"); 
 		
 		else {
 			System.out.println("*************格式验证结果为：*************:\n" + isBtwFlds + "\n");
@@ -75,6 +84,10 @@ public class Parser {
 
 			// 第三步：通过“：”将字段分成两段，并取出每一段的值
 			String fieldSp[][] = new String[len][];
+			
+			//用于值验证的Boolean型画布
+			boolean [][] canvasToparse = new boolean[ROW_IN_CANVAS][COLUMN_IN_CANVAS];
+			
 
 			for (int num = 0; num < len; num++) {
 
@@ -85,17 +98,18 @@ public class Parser {
 				configTemp.setSpec(fieldSp[num][1]);
 				
 				// 取出行列宽高值
-				String foreField = fieldSp[num][0];
-				String[] valuesOfField = Splitter.fieldValues(foreField);
+				String numsInField = fieldSp[num][0];
+				String[] valuesOfField = Splitter.fieldValues(numsInField);
 
 				// 第四步：检验输入的行列宽高值是否合法
-				boolean isInFld = Validator.isInField(valuesOfField);
+				System.out.println("***************增加第"+num+"个控件后画布情况******************");
+				boolean isInFld = Validator.isInField(valuesOfField,canvasToparse,ROW_IN_CANVAS,COLUMN_IN_CANVAS);
 				if (!isInFld) {
-					System.out.println("第" + num + "个字段值不合法！");
+					System.out.println("\n第" + num + "个控件数据存在问题！\n");
 					break;
 				} else {
 					// 第五步：将值赋给Configuration类对应的成员变量
-					configTemp.setH(Integer.valueOf(valuesOfField[1]));
+					configTemp.setH(Integer.valueOf(valuesOfField[1]) * 2 - 1);
 					configTemp.setL(Integer.valueOf(valuesOfField[3]) * 2 - 1);
 					configTemp.setK(Integer.valueOf(valuesOfField[5]) * 2 - 1);
 					configTemp.setG(Integer.valueOf(valuesOfField[7]) * 2 - 1);					

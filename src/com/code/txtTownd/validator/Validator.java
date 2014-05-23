@@ -26,8 +26,40 @@ public class Validator {
 	 * 	3、同一行内不可重叠：numL1 + numK1 < numL2 && numL1 < numL2<br/>
 	 * @return boolean
 	 */
-	public static boolean isInField(String[] strToValid){	
+	public static boolean isInField(String[] strToValid, boolean[][] canvas, int row , int column){	
 		//TODO
+		int ha = Integer.valueOf(strToValid[1]);
+		int li = Integer.valueOf(strToValid[3]);
+		int ku = Integer.valueOf(strToValid[5]);
+		int ga = Integer.valueOf(strToValid[7]);
+		
+		//行值，宽值取自{1,2,3,4},行值加宽值不大于表宽
+		if(li<1||li>column||ku<1||ku>column
+				||li+ku-1>column){
+			System.out.println("行值，宽值或行值与宽值之和有误！");
+			return false;
+		}
+		
+		//检测当前控件所需占据的控件是否已被占用
+		// 如果被占用，返回false
+		// 如果未被占用，则将其占用区域对应的canvas元素置为true
+		for(int i = ha-1; i < ha - 1 + ga; i ++){
+			for(int j = li-1; j < li - 1 + ku; j++){
+				if(canvas[i][j]){
+					System.out.println("控件与之前控件重叠！");
+					return  false;					
+				}
+				canvas[i][j] = true;				 
+			}
+		}
+		System.out.println();
+		for(int i = 0; i < 4; i++){
+			for (int j = 0; j < column; j ++){
+				System.out.print(canvas[i][j]+ "\t");
+			}
+			System.out.println();
+		}
+		System.out.println();
 		return true;
 	}	
 	
