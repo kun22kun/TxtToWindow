@@ -1,5 +1,5 @@
 /*
- * @author 骞坤<br/>
+ * 创建  骞坤 2014年5月14日 16:20
  */
 package com.code.txttownd.validator;
 
@@ -53,7 +53,8 @@ public class Validator {
 			}
 		}
 		System.out.println();
-		for(int i = 0; i < 4; i++){
+		int rowInFor = Math.max(4, ha+ga-1);
+		for(int i = 0; i < rowInFor; i++){
 			for (int j = 0; j < column; j ++){
 				System.out.print(canvas[i][j]+ "\t");
 			}
@@ -77,7 +78,8 @@ public class Validator {
 		 // 	\\H[1-9]\\d*L[1-4]K[1-4]G[1-9]\\d*:[A-Za-z]\\w* 验证字段格式
 		 // 	\\s+ 验证是否用空格、制表符或换行等（空白字符）隔开		 
 		Pattern p = Pattern.compile
-				("^\\s*\\n[H[1-9]\\d*L[1-4]K[1-4]G[1-9]\\d*:[A-Za-z]\\w*\\s+]+$");
+				("(H[1-9]\\d*L[1-4]K[1-4]G[1-9]\\d*:[A-Za-z]\\w*\\s+)+");
+				
 		Matcher m = p.matcher(strToMatch);
 		boolean b = m.matches();
 		return b;

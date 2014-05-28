@@ -1,5 +1,5 @@
 /*
- * @author 骞坤<br/>
+ * 创建 骞坤 2014年5月12日 13:40
  */
 package com.code.txttownd.parser;
 
