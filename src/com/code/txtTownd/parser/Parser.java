@@ -5,7 +5,7 @@ package com.code.txttownd.parser;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -20,8 +20,12 @@ import com.code.txttownd.config.Configuration;
 
 public class Parser {
 	/**
-	 * 值验证画布的行值
+	 * 布局最大行值
 	 */
+	private static int rowMax ;
+	/**
+	 * 值验证画布的行值
+	 */	
 	public static final int ROW_IN_CANVAS = 25;
 	/**
 	 * 值验证画布的列值
@@ -29,12 +33,20 @@ public class Parser {
 	public static final int COLUMN_IN_CANVAS = 4;
 	
 	/**
-	 * 读入给定路径下文件，以HashMap<String,String>格式返回所有配置信息
+	 * 返回布局最大行值
+	 * @return rowMax
+	 */
+	public static int getRowMax() {		
+		return rowMax;		
+	}
+	
+	/**
+	 * 读入给定路径下文件，以LinkedHashMap<String,String>格式返回所有配置信息
 	 * @param fileInParser
 	 * @return configsMapRe
 	 * @throws ContentException 
 	 */
-	public static HashMap<String, String> readerIn(File fileInParser) throws ContentException {
+	public static LinkedHashMap<String, String> readerIn(File fileInParser) throws ContentException {
 
 		//以String类型读入路径下文件内容
 		String stringFromFile = Importer.importTXT(fileInParser);
@@ -48,21 +60,24 @@ public class Parser {
 		//对配置信息进行提取和验证
 		ArrayList<Configuration> listTmp = stringToParse(strDivToFirCon[1]);
 
-		HashMap<String, String> configsMapRe = Pack.changeLiToMa(listTmp);
+		LinkedHashMap<String, String> configsMapRe = new LinkedHashMap<>();
 		
-		//将第一行加入到HashMap中
+		//将第一行加入到Map中
 		configsMapRe.put("control.conf", strDivToFirCon[0]);
+		
+		//将配置值加入到Map中
+		configsMapRe.putAll(Pack.changeLiToMa(listTmp));		
 
 		return configsMapRe;
 	}
 	
 	/**
-	 * 读入字符串类型配置信息，以HashMap<String,String>格式返回所有配置信息
+	 * 读入字符串类型配置信息，以LinkedHashMap<String,String>格式返回所有配置信息
 	 * @param stringFromStr
 	 * @return configsMapRe
 	 * @throws ContentException 
 	 */
-	public static HashMap<String, String> readerIn(String stringFromStr) throws ContentException {
+	public static LinkedHashMap<String, String> readerIn(String stringFromStr) throws ContentException {
 
 		
 		//System.out.println(stringFromStr);
@@ -72,10 +87,13 @@ public class Parser {
 		//对配置信息进行提取和验证
 		ArrayList<Configuration> listTmp = stringToParse(strDivToFirCon[1]);
 
-		HashMap<String, String> configsMapRe = Pack.changeLiToMa(listTmp);
+		LinkedHashMap<String, String> configsMapRe = new LinkedHashMap<>();
 		
-		//将第一行加入到HashMap中
+		//将第一行加入到Map中
 		configsMapRe.put("control.conf", strDivToFirCon[0]);
+		
+		//将配置值加入到Map中
+		configsMapRe.putAll(Pack.changeLiToMa(listTmp));
 
 		return configsMapRe;
 	}
@@ -128,13 +146,17 @@ public class Parser {
 				boolean isInFld = Validator.isInField(valuesOfField,canvasToparse,ROW_IN_CANVAS,COLUMN_IN_CANVAS);
 				if (!isInFld) {					
 					throw new ContentException("\n第" + (num+1) + "个控件数据存在问题！\n");
-				} else {
+				} else {					
 					// 第五步：将值赋给Configuration类对应的成员变量
 					configTemp.setH(Integer.valueOf(valuesOfField[1]) * 2 - 1);
 					configTemp.setL(Integer.valueOf(valuesOfField[3]) * 2 - 1);
 					configTemp.setK(Integer.valueOf(valuesOfField[5]) * 2 - 1);
 					configTemp.setG(Integer.valueOf(valuesOfField[7]) * 2 - 1);					
 					
+					int rowLast = configTemp.getH()+configTemp.getG()-1;
+					if(rowLast>=rowMax){
+						rowMax = rowLast;
+					}
 					// 第六步：向ArrayList中添加元素
 					ConfigsList .add(configTemp);
 				}

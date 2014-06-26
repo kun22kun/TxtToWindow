@@ -3,8 +3,8 @@
   */
 package com.code.txttownd.test;
 import java.io.File;
-import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -32,13 +32,17 @@ public class Test {
 		// HashMap格式如下：
 		//  Key（String类型）为Spec字段
 		//  Value（String类型）依次为行列宽高值
-		HashMap<String, String> configurationsInMap = new HashMap<>();
+		LinkedHashMap<String, String> configurationsInMap = new LinkedHashMap<>();
 		try {
 			configurationsInMap = Parser.readerIn(configuresInput);
 		} catch (ContentException e) {
 			e.printStackTrace();
 		}
-		System.out.println("***************控件数量为：***************\n"+(configurationsInMap.size()-1)+"\n");
+		int row = Parser.getRowMax();
+		
+		System.out.println("***************布局行数为：***************\n"+row+"\n");
+		System.out.println("***************控件数量为：***************\n"+(configurationsInMap.size()-1)+"\n");	
+		
 
 		System.out.println("***************配置信息为：***************");
 		Iterator<Entry<String, String>> iter = configurationsInMap.entrySet().iterator();	//用于测试读入到HashMap中的值是否正确

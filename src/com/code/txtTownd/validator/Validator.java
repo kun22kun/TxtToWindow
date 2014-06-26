@@ -33,10 +33,10 @@ public class Validator {
 		int ku = Integer.valueOf(strToValid[5]);
 		int ga = Integer.valueOf(strToValid[7]);
 		
-		//行值，宽值取自{1,2,3,4},行值加宽值不大于表宽
+		//列值，宽值取自{1,2,3,4},列值加宽值不大于表宽
 		if(li<1||li>column||ku<1||ku>column
 				||li+ku-1>column){
-			System.out.println("行值，宽值或行值与宽值之和有误！");
+			System.out.println("列值，宽值或列值与宽值之和有误！");
 			return false;
 		}
 		
@@ -45,7 +45,7 @@ public class Validator {
 		// 如果未被占用，则将其占用区域对应的canvas元素置为true
 		for(int i = ha-1; i < ha - 1 + ga; i ++){
 			for(int j = li-1; j < li - 1 + ku; j++){
-				if(canvas[i][j]){
+				if(canvas[i][j]){					
 					System.out.println("控件与之前控件重叠！");
 					return  false;					
 				}
@@ -53,7 +53,8 @@ public class Validator {
 			}
 		}
 		System.out.println();
-		int rowInFor = Math.max(4, ha+ga-1);
+		int rowInFor = (ha+ga-1)>4?ha+ga-1:4;
+//		int rowInFor = Math.max(4, ha+ga-1);
 		for(int i = 0; i < rowInFor; i++){
 			for (int j = 0; j < column; j ++){
 				System.out.print(canvas[i][j]+ "\t");
@@ -75,10 +76,10 @@ public class Validator {
 		
 		 // 定义正则表达式：<br/>
 		 // 	\s*\n 验证第一行空白行
-		 // 	\\H[1-9]\\d*L[1-4]K[1-4]G[1-9]\\d*:[A-Za-z]\\w* 验证字段格式
+		 // 	\\H[1-9]\\d*L[1-9]\\d*K[1-9]\\d*G[1-9]\\d*:[A-Za-z]\\w* 验证字段格式
 		 // 	\\s+ 验证是否用空格、制表符或换行等（空白字符）隔开		 
 		Pattern p = Pattern.compile
-				("(H[1-9]\\d*L[1-4]K[1-4]G[1-9]\\d*:[A-Za-z]\\w*\\s+)+");
+				("(H[1-9]\\d*L[1-9]\\d*K[1-9]\\d*G[1-9]\\d*:[A-Za-z]\\w*\\s+)+");
 				
 		Matcher m = p.matcher(strToMatch);
 		boolean b = m.matches();

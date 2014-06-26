@@ -4,7 +4,7 @@
 package com.code.txttownd.pack;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -20,9 +20,9 @@ public class Pack {
 	 * @param listToMap
 	 * @return mapFromList
 	 */
-	public static HashMap<String, String> changeLiToMa(ArrayList<Configuration> listToMap) {
+	public static LinkedHashMap<String, String> changeLiToMa(ArrayList<Configuration> listToMap) {
 		
-		HashMap<String, String> mapFromList = new HashMap<>();
+		LinkedHashMap<String, String> mapFromList = new LinkedHashMap<>();
 		
 		for(int i = 0; i < listToMap.size(); i++){
 			
